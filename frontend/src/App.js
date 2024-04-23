@@ -8,6 +8,7 @@ import Home from './Components/Home.js';
 import SignIn from './Components/SignIn.js'
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import DashBoard from './Components/Dashboard.js';
+import DashBoard1 from "./Components/Dashboard1.js";
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/SignIn" element={<SignIn/>}/>
-        <Route path="/DashBoard" element={<DashBoard/>}/>
+        <Route path="/Dsb" element={<DashBoard/>}/>
+        <Route path="/Dsb1" element={<DashBoard1/>}/>
       </Routes>
     </Router>
     </GoogleOAuthProvider>
