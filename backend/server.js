@@ -26,7 +26,26 @@ app.use(
     credentials: true,
   })
 );
+const verifyToken = (req, res, next) => {
+  // Extract token from the Authorization header
+  const token = req.headers.authorization;
+  // console.log(token);
 
+  // Check if token is available
+  if (!token) {
+    console.log("Unauthorized Access: Token unavailable");
+    return res.status(401).json({ message: "Token unavailable" });
+  }
+  jwt.verify(token, process.env.JWT_ACCESS_KEY, (err, decoded) => {
+    if (err) {
+      console.log("Forbidden: Token invalid");
+      return res.status(403).json({ message: "Token Invalid" });
+    }
+    req.user = decoded;
+    console.log("Token Verified");
+    next();
+  });
+};
 app.post("/Create", async (req, res) => {
   const email = req.body.email;
   const name = req.body.name;
